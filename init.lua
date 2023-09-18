@@ -40,14 +40,9 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
-
-vim.keymap.set('n', '<leader>fw', function() vim.cmd [[w]] end, {})
-vim.keymap.set('n', '<leader>fq', function() vim.cmd [[q]] end, {})
-vim.keymap.set('n', '<leader>fx', function() vim.cmd [[q!]] end, {})
+vim.keymap.set('n', '<leader>w', function() vim.cmd [[w]] end, {})
+vim.keymap.set('n', '<leader>q', function() vim.cmd [[q]] end, {})
+vim.keymap.set('n', '<leader>x', function() vim.cmd [[q!]] end, {})
 
 require 'lazy'.setup({
     {
@@ -56,7 +51,7 @@ require 'lazy'.setup({
         config = function()
             require 'nvim-treesitter.configs'.setup {
                 highlight = { enable = true },
-                disable = function(lang, buf)
+                disable = function(_, buf)
                     local max_filesize = 100 * 1024 -- 100 KB
                     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
                     if ok and stats and stats.size > max_filesize then
@@ -89,6 +84,9 @@ require 'lazy'.setup({
         'Shatur/neovim-ayu',
         lazy = false,
         config = function()
+            local colors = require('ayu.colors')
+            colors.generate(true)
+
             require('ayu').setup({
                 mirage = true,
                 overrides = {
@@ -101,6 +99,7 @@ require 'lazy'.setup({
                     CursorColumn = { bg = 'None' },
                     WhichKeyFloat = { bg = 'None' },
                     VertSplit = { bg = 'None' },
+                    -- LineNr = { fg = colors.fg }
                 },
             })
             vim.cmd([[colorscheme ayu]])
@@ -134,6 +133,12 @@ require 'lazy'.setup({
         },
         opts = {
             default_mappings = true,
+            mappings = {
+                ['<leader><leader>f'] = vim.lsp.buf.format
+            },
+            on_attach = function()
+                require('lsp-setup.utils').format_on_save(nil)
+            end,
             servers = {
                 lua_ls = {
                     settings = {
@@ -294,7 +299,6 @@ require 'lazy'.setup({
     },
     {
         'milanglacier/yarepl.nvim',
-        event = 'VeryLazy',
         dependencies = {
             {
                 'nvim-telescope/telescope-ui-select.nvim',
@@ -341,7 +345,10 @@ require 'lazy'.setup({
                 REPL = '',
             }
 
-            vim.keymap.set('n', '<leader>rs', run_cmd_with_count('REPLStart ' .. ft_to_repl[vim.bo.filetype]), {})
+            local repl = ft_to_repl[vim.bo.filetype]
+            if repl then
+                vim.keymap.set('n', '<leader>rs', run_cmd_with_count('REPLStart ' .. repl), {})
+            end
             vim.keymap.set('n', '<leader>rf', run_cmd_with_count 'REPLFocus', {})
             vim.keymap.set('n', '<leader>rv', '<CMD>Telescope REPLShow<CR>', {})
             vim.keymap.set('n', '<leader>rh', run_cmd_with_count 'REPLHide', {})
@@ -357,18 +364,47 @@ require 'lazy'.setup({
             vim.keymap.set('n', '<leader>re', partial_cmd_with_count_expr 'REPLExec', {})
         end
     },
-{
-  "folke/which-key.nvim",
-  config = function()
-    vim.o.timeout = true
-    vim.o.timeoutlen = 300
-    require("which-key").setup {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
+    {
+        "folke/which-key.nvim",
+        config = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+            require("which-key").setup {
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end
+    },
+    {
+        "kdheepak/lazygit.nvim",
+        -- optional for floating window border decoration
+        event = 'VeryLazy',
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        config = function()
+            vim.keymap.set('n', '<leader>gg', function()
+                vim.cmd [[LazyGit]]
+            end)
+        end
+    },
+    {
+        'cbochs/grapple.nvim',
+        init = function()
+            vim.keymap.set("n", "<leader>m", require("grapple").toggle, { remap = true })
+            vim.keymap.set("n", "<M-j>", function ()
+                vim.cmd[[GrappleCycle forward]]
+            end, { remap = true })
+            vim.keymap.set("n", "<M-k>", function ()
+                vim.cmd[[GrappleCycle backward]]
+            end, { remap = true })
+        end
+    },
+    {
+        'nvim-tree/nvim-tree.lua',
+        opts = {}
     }
-  end
-},
 }, {
     performance = {
         rtp = {
