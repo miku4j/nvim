@@ -142,6 +142,7 @@ require 'lazy'.setup({
             vim.keymap.set('n', '<leader>io', builtin.oldfiles, {})
             vim.keymap.set('n', '<leader>ic', builtin.command_history, {})
             vim.keymap.set('n', '<leader>it', builtin.treesitter, {})
+            vim.keymap.set('n', '<leader>id', builtin.diagnostics, {})
             vim.keymap.set('n', '<leader>ip', function() require 'telescope'.extensions.projects.projects {} end, {})
         end
     },
