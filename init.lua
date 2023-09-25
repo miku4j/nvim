@@ -59,6 +59,8 @@ vim.keymap.set('n', '<leader>x', function() vim.cmd [[q!]] end, {})
 
 vim.keymap.set({ 'n', 'v' }, 'm', '<C-d>', {})
 vim.keymap.set({ 'n', 'v' }, ',', '<C-u>', {})
+vim.keymap.set('n', '<M-m>', function() vim.cmd [[bn]] end)
+vim.keymap.set('n', '<M-,>', function() vim.cmd [[bp]] end)
 
 require 'lazy'.setup({
     {
