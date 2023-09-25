@@ -52,15 +52,13 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
-vim.keymap.set('n', ';', ':')
+vim.keymap.set({ 'n', 'v' }, ';', ':')
 vim.keymap.set('n', '<leader>w', function() vim.cmd [[w]] end, {})
 vim.keymap.set('n', '<leader>q', function() vim.cmd [[q]] end, {})
 vim.keymap.set('n', '<leader>x', function() vim.cmd [[q!]] end, {})
 
-vim.keymap.set('n', '<M-h>h', '<C-w>h')
-vim.keymap.set('n', '<M-h>j', '<C-w>j')
-vim.keymap.set('n', '<M-h>k', '<C-w>k')
-vim.keymap.set('n', '<M-h>l', '<C-w>l')
+vim.keymap.set({ 'n', 'v' }, 'm', '<C-d>', {})
+vim.keymap.set({ 'n', 'v' }, ',', '<C-u>', {})
 
 require 'lazy'.setup({
     {
@@ -420,6 +418,29 @@ require 'lazy'.setup({
                 mapping = { 'jk', 'kj' }
             })
         end,
+    },
+    {
+        'mrjones2014/smart-splits.nvim',
+        config = function()
+            -- recommended mappings
+            -- resizing splits
+            -- these keymaps will also accept a range,
+            -- for example `10<A-h>` will `resize_left` by `(10 * config.default_amount)`
+            vim.keymap.set('n', '<A-h>', require('smart-splits').resize_left)
+            vim.keymap.set('n', '<A-j>', require('smart-splits').resize_down)
+            vim.keymap.set('n', '<A-k>', require('smart-splits').resize_up)
+            vim.keymap.set('n', '<A-l>', require('smart-splits').resize_right)
+            -- moving between splits
+            vim.keymap.set('n', '<C-h>', require('smart-splits').move_cursor_left)
+            vim.keymap.set('n', '<C-j>', require('smart-splits').move_cursor_down)
+            vim.keymap.set('n', '<C-k>', require('smart-splits').move_cursor_up)
+            vim.keymap.set('n', '<C-l>', require('smart-splits').move_cursor_right)
+            -- swapping buffers between windows
+            vim.keymap.set('n', '<leader><leader>h', require('smart-splits').swap_buf_left)
+            vim.keymap.set('n', '<leader><leader>j', require('smart-splits').swap_buf_down)
+            vim.keymap.set('n', '<leader><leader>k', require('smart-splits').swap_buf_up)
+            vim.keymap.set('n', '<leader><leader>l', require('smart-splits').swap_buf_right)
+        end
     }
 }, {
     performance = {
