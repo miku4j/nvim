@@ -22,7 +22,18 @@ vim.wo.wrap = false
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.o.mouse = 'a'
-vim.o.clipboard = 'unnamedplus'
+vim.g.clipboard = { -- blazing fast clipboard in wsl2
+    name = "win32yank.exe",
+    copy = {
+        ["+"] = "win32yank.exe -i",
+        ["*"] = "win32yank.exe -i",
+    },
+    paste = {
+        ["+"] = "win32yank.exe -o --lf",
+        ["*"] = "win32yank.exe -o --lf",
+    },
+    cache_enabled = 1,
+}
 vim.o.breakindent = true
 vim.o.undofile = true
 vim.o.ignorecase = true
@@ -36,13 +47,20 @@ vim.o.tabstop = 4
 vim.o.expandtab = true
 vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
+
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+vim.keymap.set('n', ';', ':')
 vim.keymap.set('n', '<leader>w', function() vim.cmd [[w]] end, {})
 vim.keymap.set('n', '<leader>q', function() vim.cmd [[q]] end, {})
 vim.keymap.set('n', '<leader>x', function() vim.cmd [[q!]] end, {})
+
+vim.keymap.set('n', '<M-h>h', '<C-w>h')
+vim.keymap.set('n', '<M-h>j', '<C-w>j')
+vim.keymap.set('n', '<M-h>k', '<C-w>k')
+vim.keymap.set('n', '<M-h>l', '<C-w>l')
 
 require 'lazy'.setup({
     {
@@ -78,6 +96,7 @@ require 'lazy'.setup({
     },
     {
         'nvim-treesitter/nvim-treesitter-context',
+        event = 'VeryLazy',
         opts = {}
     },
     {
@@ -107,6 +126,7 @@ require 'lazy'.setup({
     },
     {
         'NMAC427/guess-indent.nvim',
+        event = 'VeryLazy'
     },
     {
         'nvim-telescope/telescope.nvim',
@@ -126,9 +146,10 @@ require 'lazy'.setup({
     },
     {
         'junnplus/lsp-setup.nvim',
+        event = 'VeryLazy',
         dependencies = {
             'neovim/nvim-lspconfig',
-            'williamboman/mason.nvim',           -- optional
+            'williamboman/mason.nvim',       -- optional
             'williamboman/mason-lspconfig.nvim', -- optional
         },
         opts = {
@@ -172,18 +193,15 @@ require 'lazy'.setup({
     },
     {
         "smoka7/hop.nvim",
+        event = 'VeryLazy',
         version = "*",
         config = function()
             -- place this in one of your configuration file(s)
             local hop = require('hop')
             local directions = require('hop.hint').HintDirection
             hop.setup {}
-            vim.keymap.set('', 'f', function() vim.cmd([[HopChar1AC]]) end)
-            vim.keymap.set('', 'F', function() vim.cmd([[HopChar1BC]]) end)
-            vim.keymap.set('', 't',
-                function() hop.hint_char1({ direction = directions.AFTER_CURSOR, hint_offset = -1 }) end)
-            vim.keymap.set('', 'T',
-                function() hop.hint_char1({ direction = directions.BEFORE_CURSOR, hint_offset = -1 }) end)
+            vim.keymap.set('', 's', function() vim.cmd([[HopChar1AC]]) end)
+            vim.keymap.set('', 'S', function() vim.cmd([[HopChar1BC]]) end)
         end
     },
     {
@@ -366,6 +384,7 @@ require 'lazy'.setup({
     },
     {
         "folke/which-key.nvim",
+        event = 'VeryLazy',
         config = function()
             vim.o.timeout = true
             vim.o.timeoutlen = 300
@@ -390,20 +409,17 @@ require 'lazy'.setup({
         end
     },
     {
-        'cbochs/grapple.nvim',
-        init = function()
-            vim.keymap.set("n", "<leader>m", require("grapple").toggle, { remap = true })
-            vim.keymap.set("n", "<M-j>", function ()
-                vim.cmd[[GrappleCycle forward]]
-            end, { remap = true })
-            vim.keymap.set("n", "<M-k>", function ()
-                vim.cmd[[GrappleCycle backward]]
-            end, { remap = true })
-        end
+        'nvim-tree/nvim-tree.lua',
+        event = 'VeryLazy',
+        opts = {}
     },
     {
-        'nvim-tree/nvim-tree.lua',
-        opts = {}
+        "max397574/better-escape.nvim",
+        config = function()
+            require("better_escape").setup({
+                mapping = { 'jk', 'kj' }
+            })
+        end,
     }
 }, {
     performance = {
