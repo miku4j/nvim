@@ -133,6 +133,8 @@ require 'lazy'.setup({
         dependencies = { 'nvim-lua/plenary.nvim' },
         config = function()
             local builtin = require('telescope.builtin')
+            require('telescope').load_extension('projects')
+            vim.keymap.set('n', '<leader>ii', builtin.builtin, {})
             vim.keymap.set('n', '<leader>if', builtin.find_files, {})
             vim.keymap.set('n', '<leader>ig', builtin.live_grep, {})
             vim.keymap.set('n', '<leader>ib', builtin.buffers, {})
@@ -140,14 +142,14 @@ require 'lazy'.setup({
             vim.keymap.set('n', '<leader>io', builtin.oldfiles, {})
             vim.keymap.set('n', '<leader>ic', builtin.command_history, {})
             vim.keymap.set('n', '<leader>it', builtin.treesitter, {})
+            vim.keymap.set('n', '<leader>ip', function() require 'telescope'.extensions.projects.projects {} end, {})
         end
     },
     {
         'junnplus/lsp-setup.nvim',
-        event = 'VeryLazy',
         dependencies = {
             'neovim/nvim-lspconfig',
-            'williamboman/mason.nvim',       -- optional
+            'williamboman/mason.nvim',           -- optional
             'williamboman/mason-lspconfig.nvim', -- optional
         },
         opts = {
@@ -441,7 +443,18 @@ require 'lazy'.setup({
             vim.keymap.set('n', '<leader><leader>k', require('smart-splits').swap_buf_up)
             vim.keymap.set('n', '<leader><leader>l', require('smart-splits').swap_buf_right)
         end
-    }
+    },
+    {
+        "ahmedkhalf/project.nvim",
+        event = 'VeryLazy',
+        config = function()
+            require("project_nvim").setup {
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end
+    },
 }, {
     performance = {
         rtp = {
