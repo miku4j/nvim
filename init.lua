@@ -22,6 +22,8 @@ vim.wo.wrap = false
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.o.mouse = 'a'
+vim.keymap.set('v', '<leader>y', [["+y]])
+vim.keymap.set('n', '<leader>p', [["+p]])
 vim.g.clipboard = { -- blazing fast clipboard in wsl2
     name = "win32yank.exe",
     copy = {
@@ -102,6 +104,7 @@ require 'lazy'.setup({
     {
         'Shatur/neovim-ayu',
         lazy = false,
+        priority = 120,
         config = function()
             local colors = require('ayu.colors')
             colors.generate(true)
@@ -150,6 +153,7 @@ require 'lazy'.setup({
     },
     {
         'junnplus/lsp-setup.nvim',
+        priority = 100,
         dependencies = {
             'neovim/nvim-lspconfig',
             'williamboman/mason.nvim',           -- optional
@@ -426,6 +430,7 @@ require 'lazy'.setup({
     },
     {
         'mrjones2014/smart-splits.nvim',
+        priority = 80,
         config = function()
             -- recommended mappings
             -- resizing splits
