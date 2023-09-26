@@ -463,6 +463,7 @@ require 'lazy'.setup({
             }
         end
     },
+    { 'akinsho/toggleterm.nvim', version = "*", config = true }
 }, {
     performance = {
         rtp = {
