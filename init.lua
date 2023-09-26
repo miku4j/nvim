@@ -421,12 +421,12 @@ require 'lazy'.setup({
         opts = {}
     },
     {
-        "max397574/better-escape.nvim",
+        'TheBlob42/houdini.nvim',
         config = function()
-            require("better_escape").setup({
-                mapping = { 'jk', 'kj' }
-            })
-        end,
+            require('houdini').setup {
+                mappings = { 'jk', 'kj' }
+            }
+        end
     },
     {
         'mrjones2014/smart-splits.nvim',
