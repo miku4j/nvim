@@ -542,14 +542,16 @@ end
 
 -- toc_lazy
 require 'lazy'.setup({
+    -- lz_tokyonight(),
+    lz_comment(),
     lz_guess_indent(),
     lz_hop(),
     lz_houdini(),
     lz_indent_blankline(),
     lz_lazygit(),
     lz_lsp_setup(),
+    lz_lualine(),
     lz_neovim_ayu(),
-    -- lz_tokyonight(),
     lz_nvim_autopairs(),
     lz_nvim_cmp(),
     lz_nvim_surround(),
@@ -562,8 +564,6 @@ require 'lazy'.setup({
     lz_treesitter_context(),
     lz_which_key(),
     lz_yarepl(),
-    lz_lualine(),
-    lz_comment(),
 }, {
     performance = {
         rtp = {
