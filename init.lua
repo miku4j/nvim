@@ -1,3 +1,6 @@
+-- Table of Content
+-- toc_lazy
+
 vim.loader.enable()
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
@@ -64,8 +67,8 @@ vim.keymap.set({ 'n', 'v' }, ',', '<C-u>', {})
 vim.keymap.set('n', '<M-m>', function() vim.cmd [[bn]] end)
 vim.keymap.set('n', '<M-,>', function() vim.cmd [[bp]] end)
 
-require 'lazy'.setup({
-    {
+local lz_treesitter = function()
+    return {
         'nvim-treesitter/nvim-treesitter',
         event = 'VeryLazy',
         config = function()
@@ -80,8 +83,10 @@ require 'lazy'.setup({
                 end
             }
         end
-    },
-    {
+    }
+end
+local lz_indent_blankline = function()
+    return {
         'lukas-reineke/indent-blankline.nvim',
         event = 'VeryLazy',
         config = function()
@@ -95,13 +100,17 @@ require 'lazy'.setup({
                 show_current_context_start = true,
             }
         end
-    },
-    {
+    }
+end
+local lz_treesitter_context = function()
+    return {
         'nvim-treesitter/nvim-treesitter-context',
         event = 'VeryLazy',
         opts = {}
-    },
-    {
+    }
+end
+local lz_neovim_ayu = function()
+    return {
         'Shatur/neovim-ayu',
         lazy = false,
         priority = 120,
@@ -126,12 +135,16 @@ require 'lazy'.setup({
             })
             vim.cmd([[colorscheme ayu]])
         end
-    },
-    {
+    }
+end
+local lz_guess_indent = function()
+    return {
         'NMAC427/guess-indent.nvim',
         event = 'VeryLazy'
-    },
-    {
+    }
+end
+local lz_telescope = function()
+    return {
         'nvim-telescope/telescope.nvim',
         event = 'VeryLazy',
         tag = '0.1.3',
@@ -150,8 +163,10 @@ require 'lazy'.setup({
             vim.keymap.set('n', '<leader>id', builtin.diagnostics, {})
             vim.keymap.set('n', '<leader>ip', function() require 'telescope'.extensions.projects.projects {} end, {})
         end
-    },
-    {
+    }
+end
+local lz_lsp_setup = function()
+    return {
         'junnplus/lsp-setup.nvim',
         priority = 100,
         dependencies = {
@@ -197,8 +212,10 @@ require 'lazy'.setup({
                 pyright = {}
             }
         }
-    },
-    {
+    }
+end
+local lz_hop = function()
+    return {
         "smoka7/hop.nvim",
         event = 'VeryLazy',
         version = "*",
@@ -210,8 +227,10 @@ require 'lazy'.setup({
             vim.keymap.set('', 's', function() vim.cmd([[HopChar1AC]]) end)
             vim.keymap.set('', 'S', function() vim.cmd([[HopChar1BC]]) end)
         end
-    },
-    {
+    }
+end
+local lz_nvim_surround = function()
+    return {
         "kylechui/nvim-surround",
         version = "*", -- Use for stability; omit to use `main` branch for the latest features
         event = 'VeryLazy',
@@ -220,8 +239,10 @@ require 'lazy'.setup({
                 -- Configuration here, or leave empty to use defaults
             })
         end
-    },
-    {
+    }
+end
+local lz_nvim_autopairs = function()
+    return {
         'windwp/nvim-autopairs',
         event = "InsertEnter",
         -- opts = {} -- this is equalent to setup({}) function
@@ -253,8 +274,10 @@ require 'lazy'.setup({
             end
             remap('i', '<bs>', 'v:lua.MUtils.BS()', { expr = true, noremap = true })
         end
-    },
-    {
+    }
+end
+local lz_nvim_cmp = function()
+    return {
         'hrsh7th/nvim-cmp',
         event = 'VeryLazy',
         dependencies = {
@@ -321,8 +344,10 @@ require 'lazy'.setup({
                 })
             })
         end
-    },
-    {
+    }
+end
+local lz_yarepl = function()
+    return {
         'milanglacier/yarepl.nvim',
         dependencies = {
             {
@@ -388,8 +413,10 @@ require 'lazy'.setup({
             vim.keymap.set('n', '<leader>rd', '<CMD>REPLDetachBufferToREPL<CR>', {})
             vim.keymap.set('n', '<leader>re', partial_cmd_with_count_expr 'REPLExec', {})
         end
-    },
-    {
+    }
+end
+local lz_which_key = function()
+    return {
         "folke/which-key.nvim",
         event = 'VeryLazy',
         config = function()
@@ -401,8 +428,10 @@ require 'lazy'.setup({
                 -- refer to the configuration section below
             }
         end
-    },
-    {
+    }
+end
+local lz_lazygit = function()
+    return {
         "kdheepak/lazygit.nvim",
         -- optional for floating window border decoration
         event = 'VeryLazy',
@@ -414,21 +443,27 @@ require 'lazy'.setup({
                 vim.cmd [[LazyGit]]
             end)
         end
-    },
-    {
+    }
+end
+local lz_nvim_tree = function()
+    return {
         'nvim-tree/nvim-tree.lua',
         event = 'VeryLazy',
         opts = {}
-    },
-    {
+    }
+end
+local lz_houdini = function()
+    return {
         'TheBlob42/houdini.nvim',
         config = function()
             require('houdini').setup {
                 mappings = { 'jk', 'kj' }
             }
         end
-    },
-    {
+    }
+end
+local lz_smart_splits = function()
+    return {
         'mrjones2014/smart-splits.nvim',
         priority = 80,
         config = function()
@@ -451,8 +486,10 @@ require 'lazy'.setup({
             vim.keymap.set('n', '<leader><leader>k', require('smart-splits').swap_buf_up)
             vim.keymap.set('n', '<leader><leader>l', require('smart-splits').swap_buf_right)
         end
-    },
-    {
+    }
+end
+local lz_project = function()
+    return {
         "ahmedkhalf/project.nvim",
         event = 'VeryLazy',
         config = function()
@@ -462,8 +499,71 @@ require 'lazy'.setup({
                 -- refer to the configuration section below
             }
         end
-    },
-    { 'akinsho/toggleterm.nvim', version = "*", config = true }
+    }
+end
+local lz_toggleterm = function()
+    return { 'akinsho/toggleterm.nvim', version = "*", config = true }
+end
+local lz_tokyonight = function()
+    return {
+        'folke/tokyonight.nvim',
+        lazy = false,
+        priority = 1000,
+        init = function()
+            require 'tokyonight'.setup {
+                style = 'storm',
+                transparent = true
+            }
+            vim.cmd [[colorscheme tokyonight]]
+        end
+    }
+end
+local lz_lualine = function()
+    return {
+        'nvim-lualine/lualine.nvim',
+        event = 'VeryLazy',
+        config = function()
+            require 'lualine'.setup {
+                options = { theme = 'ayu-mirage' }
+            }
+        end
+    }
+end
+local lz_comment = function()
+    return -- add this to your lua/plugins.lua, lua/plugins/init.lua,  or the file you keep your other plugins:
+    {
+        'numToStr/Comment.nvim',
+        opts = {
+            -- add any options here
+        },
+        lazy = false,
+    }
+end
+
+-- toc_lazy
+require 'lazy'.setup({
+    lz_guess_indent(),
+    lz_hop(),
+    lz_houdini(),
+    lz_indent_blankline(),
+    lz_lazygit(),
+    lz_lsp_setup(),
+    lz_neovim_ayu(),
+    -- lz_tokyonight(),
+    lz_nvim_autopairs(),
+    lz_nvim_cmp(),
+    lz_nvim_surround(),
+    lz_nvim_tree(),
+    lz_project(),
+    lz_smart_splits(),
+    lz_telescope(),
+    lz_toggleterm(),
+    lz_treesitter(),
+    lz_treesitter_context(),
+    lz_which_key(),
+    lz_yarepl(),
+    lz_lualine(),
+    lz_comment(),
 }, {
     performance = {
         rtp = {
