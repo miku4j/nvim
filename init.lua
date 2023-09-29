@@ -214,21 +214,6 @@ local lz_lsp_setup = function()
         }
     }
 end
-local lz_hop = function()
-    return {
-        "smoka7/hop.nvim",
-        event = 'VeryLazy',
-        version = "*",
-        config = function()
-            -- place this in one of your configuration file(s)
-            local hop = require('hop')
-            local directions = require('hop.hint').HintDirection
-            hop.setup {}
-            vim.keymap.set('', 's', function() vim.cmd([[HopChar1AC]]) end)
-            vim.keymap.set('', 'S', function() vim.cmd([[HopChar1BC]]) end)
-        end
-    }
-end
 local lz_nvim_surround = function()
     return {
         "kylechui/nvim-surround",
@@ -539,13 +524,21 @@ local lz_comment = function()
         lazy = false,
     }
 end
+local lz_leap = function()
+    return {
+        'ggandor/leap.nvim',
+        init = function()
+            require('leap').add_default_mappings()
+        end
+    }
+end
 
 -- toc_lazy
 require 'lazy'.setup({
     -- lz_tokyonight(),
     lz_comment(),
     lz_guess_indent(),
-    lz_hop(),
+    lz_leap(),
     lz_houdini(),
     lz_indent_blankline(),
     lz_lazygit(),
