@@ -539,17 +539,17 @@ end
 
 -- toc_lazy
 require 'lazy'.setup({
+    -- lz_neovim_ayu(),
     -- lz_tokyonight(),
     lz_comment(),
     lz_guess_indent(),
-    lz_leap(),
     lz_houdini(),
     lz_indent_blankline(),
-    lz_lazygit(),
-    lz_lsp_setup(),
-    lz_linefly(),
-    -- lz_neovim_ayu(),
     lz_kanagawa(),
+    lz_lazygit(),
+    lz_leap(),
+    lz_linefly(),
+    lz_lsp_setup(),
     lz_nvim_autopairs(),
     lz_nvim_cmp(),
     lz_nvim_surround(),
