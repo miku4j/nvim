@@ -209,7 +209,19 @@ local lz_lsp_setup = function()
                         },
                     },
                 },
-                pyright = {}
+                ruff_lsp = {},
+                pylsp = {
+                    settings = {
+                        -- pylsp.plugins.autopep8.enabled
+                        pylsp = {
+                            plugins = {
+                                autopep8 = {
+                                    enabled = false
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
