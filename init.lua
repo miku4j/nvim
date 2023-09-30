@@ -503,17 +503,6 @@ local lz_tokyonight = function()
         end
     }
 end
-local lz_lualine = function()
-    return {
-        'nvim-lualine/lualine.nvim',
-        event = 'VeryLazy',
-        config = function()
-            require 'lualine'.setup {
-                options = { theme = 'ayu-mirage' }
-            }
-        end
-    }
-end
 local lz_comment = function()
     return -- add this to your lua/plugins.lua, lua/plugins/init.lua,  or the file you keep your other plugins:
     {
@@ -532,6 +521,9 @@ local lz_leap = function()
         end
     }
 end
+local lz_linefly = function ()
+    return { 'bluz71/nvim-linefly' }
+end
 
 -- toc_lazy
 require 'lazy'.setup({
@@ -543,7 +535,7 @@ require 'lazy'.setup({
     lz_indent_blankline(),
     lz_lazygit(),
     lz_lsp_setup(),
-    lz_lualine(),
+    lz_linefly(),
     lz_neovim_ayu(),
     lz_nvim_autopairs(),
     lz_nvim_cmp(),
