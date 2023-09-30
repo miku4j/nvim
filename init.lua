@@ -521,8 +521,20 @@ local lz_leap = function()
         end
     }
 end
-local lz_linefly = function ()
+local lz_linefly = function()
     return { 'bluz71/nvim-linefly' }
+end
+local lz_kanagawa = function()
+    return {
+        'rebelot/kanagawa.nvim',
+        init = function()
+            require 'kanagawa'.setup {
+                transparent = true,
+                theme = 'dragon'
+            }
+            vim.cmd("colorscheme kanagawa")
+        end
+    }
 end
 
 -- toc_lazy
@@ -536,7 +548,8 @@ require 'lazy'.setup({
     lz_lazygit(),
     lz_lsp_setup(),
     lz_linefly(),
-    lz_neovim_ayu(),
+    -- lz_neovim_ayu(),
+    lz_kanagawa(),
     lz_nvim_autopairs(),
     lz_nvim_cmp(),
     lz_nvim_surround(),
