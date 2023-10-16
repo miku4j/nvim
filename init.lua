@@ -543,9 +543,9 @@ local lz_kanagawa = function()
         'rebelot/kanagawa.nvim',
         init = function()
             require 'kanagawa'.setup {
-                transparent = true,
+                -- transparent = true,
             }
-            vim.cmd("colorscheme kanagawa-dragon")
+            vim.cmd("colorscheme kanagawa-wave")
         end
     }
 end
