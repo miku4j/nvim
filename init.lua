@@ -643,6 +643,7 @@ local lz_prettier = {
     config = function ()
         require 'formatter'.setup {
             filetype = {
+                lua = { require 'formatter.filetypes.lua'.stylua },
                 html = { require 'formatter.filetypes.html'.prettier },
                 javascript = { require 'formatter.filetypes.javascript'.prettier },
             }
