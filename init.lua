@@ -49,10 +49,10 @@ vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 vim.o.completeopt = "menuone,noselect"
 vim.o.termguicolors = true
-vim.o.tabstop = 4
-vim.o.expandtab = true
-vim.o.softtabstop = 4
-vim.o.shiftwidth = 4
+-- vim.o.expandtab = true
+-- vim.o.tabstop = 4
+-- vim.o.softtabstop = 4
+-- vim.o.shiftwidth = 4
 
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -182,7 +182,7 @@ local lzth_ayu = {
 }
 local lz_guess_indent = {
 	"NMAC427/guess-indent.nvim",
-	event = "VeryLazy",
+	config = true,
 }
 local lz_telescope = {
 	"nvim-telescope/telescope.nvim",
@@ -216,9 +216,9 @@ local lz_lsp_setup = {
 		"williamboman/mason-lspconfig.nvim", -- optional
 	},
 	opts = {
-        default_mappings = true,
+		default_mappings = true,
 		mappings = {
-			['<C-k>'] = 'lua require("smart-splits").move_cursor_up()', -- lsp_setup_conflit
+			["<C-k>"] = 'lua require("smart-splits").move_cursor_up()', -- lsp_setup_conflit
 		},
 		on_attach = function()
 			require("lsp-setup.utils").format_on_save(nil)
@@ -328,7 +328,8 @@ local lz_nvim_cmp = {
 		local has_words_before = function()
 			unpack = unpack or table.unpack
 			local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-			return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+			return col ~= 0 and
+			vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 		end
 
 		local luasnip = require("luasnip")
@@ -500,7 +501,7 @@ local lz_smart_splits = {
 		-- moving between splits
 		vim.keymap.set("n", "<C-h>", require("smart-splits").move_cursor_left)
 		vim.keymap.set("n", "<C-j>", require("smart-splits").move_cursor_down)
-        -- see lsp_setup_conflit
+		-- see lsp_setup_conflit
 		vim.keymap.set("n", "<C-l>", require("smart-splits").move_cursor_right)
 		-- swapping buffers between windows
 		vim.keymap.set("n", "<leader><leader>h", require("smart-splits").swap_buf_left)
