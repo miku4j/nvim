@@ -70,6 +70,9 @@ vim.keymap.set('n', '<M-,>', function() vim.cmd [[bp]] end)
 local lz_treesitter = function()
     return {
         'nvim-treesitter/nvim-treesitter',
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter-textobjects'
+        },
         event = 'VeryLazy',
         config = function()
             require 'nvim-treesitter.configs'.setup {
@@ -80,7 +83,38 @@ local lz_treesitter = function()
                     if ok and stats and stats.size > max_filesize then
                         return true
                     end
-                end
+                end,
+                textobjects = {
+                    select = {
+                        enable = true,
+                        lookahead = true,
+                        keymaps = {
+                            ["af"] = "@function.outer",
+                            ["if"] = "@function.inner",
+                            ["ab"] = "@class.outer",
+                            ["ib"] = "@class.inner"
+                        },
+                    },
+                    -- move = {
+                    --     enable = true,
+                    --     goto_next_start = {
+                    --         ["]m"] = "@function.outer",
+                    --         ["]]"] = "@class.outer",
+                    --     },
+                    --     goto_next_end = {
+                    --         ["]M"] = "@function.outer",
+                    --         ["]["] = "@class.outer",
+                    --     },
+                    --     goto_previous_start = {
+                    --         ["[m"] = "@function.outer",
+                    --         ["[["] = "@class.outer",
+                    --     },
+                    --     goto_previous_end = {
+                    --         ["[M"] = "@function.outer",
+                    --         ["[]"] = "@class.outer",
+                    --     },
+                    -- }
+                }
             }
         end
     }
