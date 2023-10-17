@@ -109,7 +109,7 @@ local lz_treesitter_context = function()
         opts = {}
     }
 end
-local lz_neovim_ayu = function()
+local lzth_ayu = function()
     return {
         'Shatur/neovim-ayu',
         lazy = false,
@@ -506,7 +506,7 @@ end
 local lz_toggleterm = function()
     return { 'akinsho/toggleterm.nvim', version = "*", config = true }
 end
-local lz_tokyonight = function()
+local lzth_tokyonight = function()
     return {
         'folke/tokyonight.nvim',
         lazy = false,
@@ -616,10 +616,18 @@ local lz_prettier = {
     end
 }
 
+local lzth_gruvbox = {
+    'ellisonleao/gruvbox.nvim',
+    lazy = false,
+    priority = 120,
+    config = function ()
+        vim.o.background = "dark" -- or "light" for light mode
+        vim.cmd([[colorscheme gruvbox]])
+    end
+}
+
 -- toc_lazy
 require 'lazy'.setup({
-    -- lz_neovim_ayu(),
-    -- lz_tokyonight(),
     lz_comment(),
     lz_guess_indent(),
     lz_houdini(),
@@ -643,6 +651,9 @@ require 'lazy'.setup({
     lz_which_key(),
     lz_yarepl(),
     lz_prettier,
+    -- lzth_ayu(),
+    -- lzth_tokyonight(),
+    lzth_gruvbox,
 }, {
     performance = {
         rtp = {
