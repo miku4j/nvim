@@ -153,34 +153,32 @@ local lz_treesitter_context = {
 	event = "VeryLazy",
 	opts = {},
 }
-local lzth_ayu = function()
-	return {
-		"Shatur/neovim-ayu",
-		lazy = false,
-		priority = 120,
-		config = function()
-			local colors = require("ayu.colors")
-			colors.generate(true)
+local lzth_ayu = {
+	"Shatur/neovim-ayu",
+	lazy = false,
+	priority = 120,
+	config = function()
+		local colors = require("ayu.colors")
+		colors.generate(true)
 
-			require("ayu").setup({
-				mirage = true,
-				overrides = {
-					Normal = { bg = "None" },
-					ColorColumn = { bg = "None" },
-					SignColumn = { bg = "None" },
-					Folded = { bg = "None" },
-					FoldColumn = { bg = "None" },
-					CursorLine = { bg = "None" },
-					CursorColumn = { bg = "None" },
-					WhichKeyFloat = { bg = "None" },
-					VertSplit = { bg = "None" },
-					-- LineNr = { fg = colors.fg }
-				},
-			})
-			vim.cmd([[colorscheme ayu]])
-		end,
-	}
-end
+		require("ayu").setup({
+			mirage = true,
+			overrides = {
+				Normal = { bg = "None" },
+				ColorColumn = { bg = "None" },
+				SignColumn = { bg = "None" },
+				Folded = { bg = "None" },
+				FoldColumn = { bg = "None" },
+				CursorLine = { bg = "None" },
+				CursorColumn = { bg = "None" },
+				WhichKeyFloat = { bg = "None" },
+				VertSplit = { bg = "None" },
+				-- LineNr = { fg = colors.fg }
+			},
+		})
+		vim.cmd([[colorscheme ayu]])
+	end,
+}
 local lz_guess_indent = {
 	"NMAC427/guess-indent.nvim",
 	event = "VeryLazy",
@@ -535,20 +533,18 @@ local lz_project = {
 	end,
 }
 local lz_toggleterm = { "akinsho/toggleterm.nvim", version = "*", config = true }
-local lzth_tokyonight = function()
-	return {
-		"folke/tokyonight.nvim",
-		lazy = false,
-		priority = 1000,
-		init = function()
-			require("tokyonight").setup({
-				style = "storm",
-				transparent = true,
-			})
-			vim.cmd([[colorscheme tokyonight]])
-		end,
-	}
-end
+local lzth_tokyonight = {
+	"folke/tokyonight.nvim",
+	lazy = false,
+	priority = 1000,
+	init = function()
+		require("tokyonight").setup({
+			style = "storm",
+			transparent = true,
+		})
+		vim.cmd([[colorscheme tokyonight]])
+	end,
+}
 local lz_comment = {
 	"numToStr/Comment.nvim",
 	opts = {
@@ -665,8 +661,8 @@ local lzth_gruvbox = {
 -- toc_lazy
 require("lazy").setup({
 	-- theme
-	-- lzth_ayu(),
-	-- lzth_tokyonight(),
+	-- lzth_ayu,
+	-- lzth_tokyonight,
 	-- lzth_kanagawa,
 	lzth_gruvbox,
 
