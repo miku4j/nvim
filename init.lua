@@ -546,7 +546,7 @@ local lz_leap = {
 	end,
 }
 local lz_linefly = { "bluz71/nvim-linefly" }
-local lz_kanagawa = {
+local lzth_kanagawa = {
 	"rebelot/kanagawa.nvim",
 	init = function()
 		require("kanagawa").setup({
@@ -646,32 +646,39 @@ local lzth_gruvbox = {
 
 -- toc_lazy
 require("lazy").setup({
-	lz_comment,
-	lz_guess_indent,
-	lz_houdini,
-	lz_indent_blankline,
-	lz_kanagawa,
-	lz_lazygit,
-	lz_gitsigns,
-	lz_leap,
-	lz_linefly,
+    -- theme
+	-- lzth_ayu(),
+	-- lzth_tokyonight(),
+	-- lzth_kanagawa,
+	lzth_gruvbox,
+
+    -- lsp, formatter
 	lz_lsp_setup,
 	lz_nvim_autopairs,
 	lz_nvim_cmp,
 	lz_nvim_surround,
-	lz_nvim_tree,
+	lz_yarepl,
+	lz_prettier,
+	lz_treesitter,
+	lz_treesitter_context,
+
+    -- qol
+	lz_guess_indent,
+	lz_comment,
+	lz_houdini,
+	lz_indent_blankline,
+	lz_leap,
 	lz_project,
 	lz_smart_splits,
 	lz_telescope,
-	lz_toggleterm,
-	lz_treesitter,
-	lz_treesitter_context,
 	lz_which_key,
-	lz_yarepl,
-	lz_prettier,
-	-- lzth_ayu(),
-	-- lzth_tokyonight(),
-	lzth_gruvbox,
+    
+    -- git, etc
+	lz_lazygit,
+	lz_gitsigns,
+	lz_linefly,
+	lz_nvim_tree,
+	lz_toggleterm,
 }, {
 	performance = {
 		rtp = {
