@@ -76,6 +76,12 @@ end)
 vim.keymap.set("n", "<M-,>", function()
 	vim.cmd([[bp]])
 end)
+vim.keymap.set("n", "<M-M>", function()
+	vim.cmd([[tabn]])
+end)
+vim.keymap.set("n", "<M-<>", function()
+	vim.cmd([[tabp]])
+end)
 
 local lz_treesitter = {
 	"nvim-treesitter/nvim-treesitter",
