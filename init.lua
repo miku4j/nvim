@@ -223,7 +223,10 @@ local lz_lsp_setup = function()
                             }
                         }
                     }
-                }
+                },
+                tsserver = {},
+                emmet_ls = {},
+                html = {},
             }
         }
     }
@@ -600,6 +603,19 @@ local lz_gitsigns = function()
     }
 end
 
+local lz_prettier = {
+    'mhartington/formatter.nvim',
+    event = 'VeryLazy',
+    config = function ()
+        require 'formatter'.setup {
+            filetype = {
+                html = { require 'formatter.filetypes.html'.prettier },
+                javascript = { require 'formatter.filetypes.javascript'.prettier },
+            }
+        }
+    end
+}
+
 -- toc_lazy
 require 'lazy'.setup({
     -- lz_neovim_ayu(),
@@ -626,6 +642,7 @@ require 'lazy'.setup({
     lz_treesitter_context(),
     lz_which_key(),
     lz_yarepl(),
+    lz_prettier,
 }, {
     performance = {
         rtp = {
