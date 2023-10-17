@@ -220,19 +220,19 @@ local lz_lsp_setup = {
 	opts = {
 		default_mappings = true,
 		mappings = {
-            gD = 'lua vim.lsp.buf.declaration()',
-            gd = 'lua vim.lsp.buf.definition()',
-            gt = 'lua vim.lsp.buf.type_definition()',
-            gi = 'lua vim.lsp.buf.implementation()',
-            gr = 'lua vim.lsp.buf.references()',
-            K = 'lua vim.lsp.buf.hover()',
-            -- ['<C-k>'] = 'lua vim.lsp.buf.signature_help()', -- conflict with lz_smart_splits
-            ['<space>rn'] = 'lua vim.lsp.buf.rename()',
-            ['<space>ca'] = 'lua vim.lsp.buf.code_action()',
-            -- ['<space>f'] = 'lua vim.lsp.buf.formatting()', -- i have 
-            ['<space>e'] = 'lua vim.diagnostic.open_float()',
-            ['[d'] = 'lua vim.diagnostic.goto_prev()',
-            [']d'] = 'lua vim.diagnostic.goto_next()',
+			gD = "lua vim.lsp.buf.declaration()",
+			gd = "lua vim.lsp.buf.definition()",
+			gt = "lua vim.lsp.buf.type_definition()",
+			gi = "lua vim.lsp.buf.implementation()",
+			gr = "lua vim.lsp.buf.references()",
+			K = "lua vim.lsp.buf.hover()",
+			-- ['<C-k>'] = 'lua vim.lsp.buf.signature_help()', -- conflict with lz_smart_splits
+			["<space>rn"] = "lua vim.lsp.buf.rename()",
+			["<space>ca"] = "lua vim.lsp.buf.code_action()",
+			-- ['<space>f'] = 'lua vim.lsp.buf.formatting()', -- i have
+			["<space>e"] = "lua vim.diagnostic.open_float()",
+			["[d"] = "lua vim.diagnostic.goto_prev()",
+			["]d"] = "lua vim.diagnostic.goto_next()",
 		},
 		on_attach = function()
 			require("lsp-setup.utils").format_on_save(nil)
@@ -664,13 +664,13 @@ local lzth_gruvbox = {
 
 -- toc_lazy
 require("lazy").setup({
-    -- theme
+	-- theme
 	-- lzth_ayu(),
 	-- lzth_tokyonight(),
 	-- lzth_kanagawa,
 	lzth_gruvbox,
 
-    -- lsp, formatter
+	-- lsp, formatter
 	lz_lsp_setup,
 	lz_nvim_autopairs,
 	lz_nvim_cmp,
@@ -680,7 +680,7 @@ require("lazy").setup({
 	lz_treesitter,
 	lz_treesitter_context,
 
-    -- qol
+	-- qol
 	lz_guess_indent,
 	lz_comment,
 	lz_houdini,
@@ -690,8 +690,8 @@ require("lazy").setup({
 	lz_smart_splits,
 	lz_telescope,
 	lz_which_key,
-    
-    -- git, etc
+
+	-- git, etc
 	lz_lazygit,
 	lz_gitsigns,
 	lz_linefly,
