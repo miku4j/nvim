@@ -626,7 +626,7 @@ local lz_gitsigns = {
 	end,
 }
 
-local lz_prettier = {
+local lz_formatter = {
 	"mhartington/formatter.nvim",
 	event = "VeryLazy",
 	config = function()
@@ -664,7 +664,7 @@ require("lazy").setup({
 	lz_nvim_cmp,
 	lz_nvim_surround,
 	lz_yarepl,
-	lz_prettier,
+	lz_formatter,
 	lz_treesitter,
 	lz_treesitter_context,
 
