@@ -26,20 +26,6 @@ vim.wo.wrap = false
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.o.mouse = "a"
-vim.keymap.set("v", "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>p", [["+p]])
-vim.g.clipboard = { -- blazing fast clipboard in wsl2
-	name = "win32yank.exe",
-	copy = {
-		["+"] = "win32yank.exe -i",
-		["*"] = "win32yank.exe -i",
-	},
-	paste = {
-		["+"] = "win32yank.exe -o --lf",
-		["*"] = "win32yank.exe -o --lf",
-	},
-	cache_enabled = 1,
-}
 vim.o.breakindent = true
 vim.o.undofile = true
 vim.o.ignorecase = true
@@ -53,6 +39,22 @@ vim.o.termguicolors = true
 -- vim.o.tabstop = 4
 -- vim.o.softtabstop = 4
 -- vim.o.shiftwidth = 4
+
+vim.g.clipboard = { -- blazing fast clipboard in wsl2
+	name = "win32yank.exe",
+	copy = {
+		["+"] = "win32yank.exe -i",
+		["*"] = "win32yank.exe -i",
+	},
+	paste = {
+		["+"] = "win32yank.exe -o --lf",
+		["*"] = "win32yank.exe -o --lf",
+	},
+	cache_enabled = 1,
+}
+
+vim.keymap.set("v", "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>p", [["+p]])
 
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
