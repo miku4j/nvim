@@ -1,6 +1,7 @@
 return {
 	{ "nvim-lualine/lualine.nvim", enabled = false },
 	{ "echasnovski/mini.statusline", version = "*", opts = {} },
+  { "jeetsukumaran/vim-indentwise" },
 	{
 		"kylechui/nvim-surround",
 		version = "*",
