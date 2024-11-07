@@ -4,7 +4,10 @@ return {
   {
     "stevearc/conform.nvim",
     opts = {
-      formatters_by_ft = { blade = { "blade-formatter" } },
+      formatters_by_ft = {
+        blade = { "blade-formatter" },
+        php = { "php_cs_fixer" },
+      },
     },
   },
   {
@@ -18,13 +21,7 @@ return {
         enabled = false,
       },
       servers = {
-        phpactor = {
-          filetypes = { "php", "blade" },
-          init_options = {
-            ["language_server_phpstan.enabled"] = false,
-            ["language_server_psalm.enabled"] = false,
-          },
-        },
+        phpactor = { filetypes = { "php", "blade" } },
         emmet_language_server = { filetypes = { "php", "blade" } },
       },
     },
