@@ -1,6 +1,4 @@
 return {
-  { "nvim-lualine/lualine.nvim", enabled = false },
-  { "echasnovski/mini.statusline", version = "*", opts = {} },
   {
     "stevearc/conform.nvim",
     opts = {
