@@ -1,5 +1,15 @@
 return {
   {
+    "oxfist/night-owl.nvim",
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
+    config = function()
+      -- load the colorscheme here
+      require("night-owl").setup()
+      vim.cmd.colorscheme("night-owl")
+    end,
+  },
+  {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
@@ -16,7 +26,7 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       document_highlight = {
-        enabled = false,
+        -- enabled = false,
       },
       servers = {
         phpactor = { filetypes = { "php", "blade" } },
@@ -34,30 +44,6 @@ return {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     config = true,
-  },
-  {
-    "zenbones-theme/zenbones.nvim",
-    enabled = false,
-    dependencies = "rktjmp/lush.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      vim.g.neobones = { transparent_background = true }
-      -- vim.cmd.colorscheme("neobones")
-    end,
-  },
-  {
-    "olivercederborg/poimandres.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("poimandres").setup({
-        disable_background = true,
-        disable_float_background = true,
-        disable_italics = true,
-      })
-      vim.cmd.colorscheme("poimandres")
-    end,
   },
   {
     "nvim-treesitter/nvim-treesitter",
