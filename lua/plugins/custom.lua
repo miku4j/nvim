@@ -41,11 +41,6 @@ return {
     opts = {},
   },
   {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    config = true,
-  },
-  {
     "nvim-treesitter/nvim-treesitter",
     config = function(_, opts)
       if type(opts.ensure_installed) == "table" then
