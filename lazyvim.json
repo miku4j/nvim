@@ -4,10 +4,11 @@
     "lazyvim.plugins.extras.formatting.prettier",
     "lazyvim.plugins.extras.lang.tailwind",
     "lazyvim.plugins.extras.lang.typescript",
-    "lazyvim.plugins.extras.lang.vue"
+    "lazyvim.plugins.extras.lang.vue",
+    "lazyvim.plugins.extras.util.project"
   ],
   "news": {
-    "NEWS.md": "7107"
+    "NEWS.md": "7429"
   },
   "version": 7
 }
