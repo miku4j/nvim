@@ -23,4 +23,10 @@ return {
       colorscheme = "night-owl",
     },
   },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      window = { width = 30 },
+    },
+  },
 }
