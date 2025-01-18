@@ -21,6 +21,8 @@ return {
       },
     },
   },
+
+  -- crazy qol plugins
   {
     "jeetsukumaran/vim-indentwise",
     vscode = true,
@@ -32,5 +34,9 @@ return {
     version = "*",
     event = "VeryLazy",
     opts = {},
+  },
+  {
+    "unblevable/quick-scope",
+    event = "VeryLazy",
   },
 }
