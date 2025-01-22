@@ -3,3 +3,5 @@
 -- Add any additional options here
 vim.g.autoformat = false
 vim.g.snacks_animate = false
+vim.o.ignorecase = false
+vim.o.smartcase = false
