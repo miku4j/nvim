@@ -6,6 +6,7 @@ return {
       formatters_by_ft = {
         blade = { "blade-formatter" },
         php = { "php_cs_fixer" },
+        go = { "gofmt" },
       },
     },
   },
