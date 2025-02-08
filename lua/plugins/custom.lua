@@ -6,9 +6,11 @@ return {
     },
   },
   {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "tokyonight-night",
-    },
+    "Shatur/neovim-ayu",
+    priority = 1000,
+    config = function()
+      require("ayu").setup({})
+      require("ayu").colorscheme()
+    end,
   },
 }
