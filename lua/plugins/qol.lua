@@ -27,6 +27,12 @@ return {
     "jeetsukumaran/vim-indentwise",
     vscode = true,
     event = "VeryLazy",
+    config = function()
+      local map = LazyVim.safe_keymap_set
+
+      map({"n", "x"}, "<A-h>", "<Plug>(IndentWisePreviousEqualIndent)")
+      map({"n", "x"}, "<A-l>", "<Plug>(IndentWiseNextEqualIndent)")
+    end,
   },
   {
     "kylechui/nvim-surround",
