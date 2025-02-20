@@ -5,9 +5,9 @@
 local map = LazyVim.safe_keymap_set
 
 -- Aider; mnemonic: Intelligent
-map("n", "<C-i>", function()
+map("n", "<M-i>", function()
   Snacks.terminal.toggle("aider --watch-files")
 end, { desc = "Open Aider Terminal" })
-map("t", "<C-i>", function()
+map("t", "<M-i>", function()
   Snacks.terminal.toggle("aider --watch-files")
 end, { desc = "Close Aider Terminal" })
