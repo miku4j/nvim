@@ -5,17 +5,17 @@
 local map = LazyVim.safe_keymap_set
 
 -- Aider; mnemonic: Intelligent
-map("n", "<M-i>", function()
+map("n", "<A-i>", function()
   Snacks.terminal.toggle("aider --watch-files")
 end, { desc = "Open Aider Terminal" })
-map("t", "<M-i>", function()
+map("t", "<A-i>", function()
   Snacks.terminal.toggle("aider --watch-files")
 end, { desc = "Close Aider Terminal" })
 
--- LF
-map("n", "<M-l>", function()
+-- LF; mnemonic: Organize
+map("n", "<A-o>", function()
   Snacks.terminal.toggle("lf")
 end, { desc = "Open LF Terminal" })
-map("t", "<M-l>", function()
+map("t", "<A-o>", function()
   Snacks.terminal.toggle("lf")
 end, { desc = "Close LF Terminal" })
