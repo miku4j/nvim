@@ -11,3 +11,11 @@ end, { desc = "Open Aider Terminal" })
 map("t", "<M-i>", function()
   Snacks.terminal.toggle("aider --watch-files")
 end, { desc = "Close Aider Terminal" })
+
+-- LF
+map("n", "<M-l>", function()
+  Snacks.terminal.toggle("lf")
+end, { desc = "Open LF Terminal" })
+map("t", "<M-l>", function()
+  Snacks.terminal.toggle("lf")
+end, { desc = "Close LF Terminal" })
