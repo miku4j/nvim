@@ -6,10 +6,10 @@ local map = LazyVim.safe_keymap_set
 
 -- Aider; mnemonic: Intelligent
 map("n", "<A-i>", function()
-  Snacks.terminal.toggle("aider --watch-files --chat-mode ask")
+  Snacks.terminal.toggle("aider --watch-files --chat-mode ask --no-auto-commit")
 end, { desc = "Open Aider Terminal" })
 map("t", "<A-i>", function()
-  Snacks.terminal.toggle("aider --watch-files --chat-mode ask")
+  Snacks.terminal.toggle("aider --watch-files --chat-mode ask --no-auto-commit")
 end, { desc = "Close Aider Terminal" })
 
 -- LF; mnemonic: Organize
