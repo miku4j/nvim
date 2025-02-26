@@ -7,6 +7,7 @@ return {
         blade = { "blade-formatter" },
         php = { "php_cs_fixer" },
         go = { "gofmt" },
+        markdown = { "mdformat" },
       },
     },
   },
