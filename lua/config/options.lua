@@ -5,3 +5,7 @@ vim.g.autoformat = false
 vim.g.snacks_animate = false
 vim.o.ignorecase = false
 vim.o.smartcase = false
+vim.o.wrap = true
+vim.o.breakindent = true
+vim.o.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
+vim.o.linebreak = true
