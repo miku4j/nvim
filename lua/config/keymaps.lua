@@ -7,12 +7,10 @@ if not vim.g.vscode then
 
   -- Aider; mnemonic: Intelligent
   map("n", "<A-i>", function()
-    -- Snacks.terminal.toggle("aider --watch-files --chat-mode ask --no-auto-commit")
-    Snacks.terminal.toggle("aider --watch-files --no-auto-commit")
+    Snacks.terminal.toggle("aider")
   end, { desc = "Open Aider Terminal" })
   map("t", "<A-i>", function()
-    -- Snacks.terminal.toggle("aider --watch-files --chat-mode ask --no-auto-commit")
-    Snacks.terminal.toggle("aider --watch-files --no-auto-commit")
+    Snacks.terminal.toggle("aider")
   end, { desc = "Close Aider Terminal" })
 
   -- LF; mnemonic: Organize
