@@ -22,7 +22,6 @@ return {
           VertSplit = { bg = "None" },
         },
       })
-      -- require("ayu").colorscheme()
     end,
   },
   {
@@ -32,20 +31,23 @@ return {
     opts = {
       tweak_background = {
         -- normal = 'none',
-      }
-    }
-    -- init = function()
-    --   vim.cmd.colorscheme("lackluster")
-    --   vim.cmd.colorscheme("lackluster-hack") -- my favorite
-    --   vim.cmd.colorscheme("lackluster-mint")
-    -- end,
+      },
+    },
   },
-
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    opts = {
+      transparent_background = true,
+    }
+  },
   {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "lackluster-hack",
-      colorscheme = "ayu",
+      -- colorscheme = "ayu",
+      colorscheme = "catppuccin-mocha",
     },
   },
 }
