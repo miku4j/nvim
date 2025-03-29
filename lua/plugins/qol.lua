@@ -43,6 +43,7 @@ return {
   },
   {
     "unblevable/quick-scope",
+    enabled = false,
     event = "VeryLazy",
     config = function()
       vim.cmd([[
