@@ -13,13 +13,13 @@ if not vim.g.vscode then
     Snacks.terminal.toggle("aider")
   end, { desc = "Close Aider Terminal" })
 
-  -- LF; mnemonic: Organize
+  -- Superfile; mnemonic: Organize
   map("n", "<A-o>", function()
-    Snacks.terminal.toggle("lf")
-  end, { desc = "Open LF Terminal" })
+    Snacks.terminal.toggle("spf")
+  end, { desc = "Open spf Terminal" })
   map("t", "<A-o>", function()
-    Snacks.terminal.toggle("lf")
-  end, { desc = "Close LF Terminal" })
+    Snacks.terminal.toggle("spf")
+  end, { desc = "Close spf Terminal" })
 
   -- Lazygit;
   map("n", "<A-g>", function()
