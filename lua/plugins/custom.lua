@@ -47,7 +47,7 @@ return {
     opts = {
       -- colorscheme = "lackluster-hack",
       -- colorscheme = "ayu",
-      colorscheme = "catppuccin-mocha",
+      colorscheme = "catppuccin-frappe",
     },
   },
 }
