@@ -30,8 +30,8 @@ return {
     config = function()
       local map = LazyVim.safe_keymap_set
 
-      map({"n", "x"}, "<A-h>", "<Plug>(IndentWisePreviousEqualIndent)")
-      map({"n", "x"}, "<A-l>", "<Plug>(IndentWiseNextEqualIndent)")
+      map({ "n", "x" }, "<A-h>", "<Plug>(IndentWisePreviousEqualIndent)")
+      map({ "n", "x" }, "<A-l>", "<Plug>(IndentWiseNextEqualIndent)")
     end,
   },
   {
@@ -43,7 +43,6 @@ return {
   },
   {
     "unblevable/quick-scope",
-    enabled = false,
     event = "VeryLazy",
     config = function()
       vim.cmd([[
@@ -94,6 +93,16 @@ return {
         map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
         map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
       end,
+    },
+  },
+
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {
+      modes = {
+        char = { enabled = false }
+      }
     },
   },
 }
