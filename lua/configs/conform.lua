@@ -4,7 +4,8 @@ local options = {
     css = { "prettier" },
     html = { "prettier" },
     vue = { "prettier" },
-    js = { "prettier" },
+    javascript = { "prettier" },
+    typescript = { "prettier" },
   },
 
   -- format_on_save = {
