@@ -6,6 +6,9 @@ vim.lsp.config("volar", {
       -- disable hybrid mode
       hybridMode = false,
     },
+    typescript = {
+      tsdk = vim.fn.expand "~/.local/share/nvim/mason/packages/vue-language-server/node_modules/typescript/lib/",
+    },
   },
 })
 -- you must remove "ts_ls" config
