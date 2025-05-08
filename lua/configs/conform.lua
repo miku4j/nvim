@@ -6,6 +6,10 @@ local options = {
     vue = { "prettierd" },
     javascript = { "prettierd" },
     typescript = { "prettierd" },
+    bash = { "shfmt" },
+    sh = { "shfmt" },
+    json = { "prettierd" },
+    yaml = { "prettierd" },
   },
 
   -- format_on_save = {
