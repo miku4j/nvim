@@ -14,4 +14,12 @@ return {
     desc = 'Terminal',
     mode = { 'n', 't' },
   },
+  {
+    '<A-i>',
+    function()
+      Snacks.terminal('aider')
+    end,
+    desc = 'Terminal',
+    mode = { 'n', 't' },
+  },
 }
