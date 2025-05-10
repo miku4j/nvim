@@ -1,4 +1,4 @@
 return {
-    { "<A-h>", "<Plug>(IndentWisePreviousEqualIndent)" },
-    { "<A-l>", "<Plug>(IndentWiseNextEqualIndent)" }
+    { "<A-h>", "<Plug>(IndentWisePreviousEqualIndent)", mode = { "n", "x" } },
+    { "<A-l>", "<Plug>(IndentWiseNextEqualIndent)", mode = { "n", "x" } }
   }
