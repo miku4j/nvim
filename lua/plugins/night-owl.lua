@@ -4,7 +4,9 @@ return {
   priority = 1000, -- make sure to load this before all the other start plugins
   config = function()
     -- load the colorscheme here
-    require('night-owl').setup()
+    require('night-owl').setup({
+      transparent_background = true,
+    })
     vim.cmd.colorscheme 'night-owl'
   end,
 }
