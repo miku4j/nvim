@@ -1,3 +1,3 @@
 -- loaded in lazy.lua
 
-require("config.mappings.vim")
+require 'config.mappings.vim'
