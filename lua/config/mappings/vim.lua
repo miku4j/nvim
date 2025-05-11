@@ -17,5 +17,3 @@ vim.keymap.set('n', '<leader>x', '<cmd>bd<CR>')
 -- window
 vim.keymap.set('n', 'j', 'gj', { noremap = true })
 vim.keymap.set('n', 'k', 'gk', { noremap = true })
-vim.keymap.set('n', 'h', 'gh', { noremap = true })
-vim.keymap.set('n', 'l', 'gl', { noremap = true })
