@@ -26,40 +26,40 @@ local mappings = function(bufnr)
     end
   end)
 
-  map('n', '<leader>ghs', gitsigns.stage_hunk)
-  map('n', '<leader>ghr', gitsigns.reset_hunk)
+  map('n', '<leader>hs', gitsigns.stage_hunk)
+  map('n', '<leader>hr', gitsigns.reset_hunk)
 
-  map('v', '<leader>ghs', function()
+  map('v', '<leader>hs', function()
     gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
   end)
 
-  map('v', '<leader>ghr', function()
+  map('v', '<leader>hr', function()
     gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
   end)
 
-  map('n', '<leader>ghS', gitsigns.stage_buffer)
-  map('n', '<leader>ghR', gitsigns.reset_buffer)
-  map('n', '<leader>ghp', gitsigns.preview_hunk)
-  map('n', '<leader>ghi', gitsigns.preview_hunk_inline)
+  map('n', '<leader>hS', gitsigns.stage_buffer)
+  map('n', '<leader>hR', gitsigns.reset_buffer)
+  map('n', '<leader>hp', gitsigns.preview_hunk)
+  map('n', '<leader>hi', gitsigns.preview_hunk_inline)
 
-  map('n', '<leader>ghb', function()
+  map('n', '<leader>hb', function()
     gitsigns.blame_line { full = true }
   end)
 
-  map('n', '<leader>ghd', gitsigns.diffthis)
+  map('n', '<leader>hd', gitsigns.diffthis)
 
-  map('n', '<leader>ghD', function()
+  map('n', '<leader>hD', function()
     gitsigns.diffthis '~'
   end)
 
-  map('n', '<leader>ghQ', function()
+  map('n', '<leader>hQ', function()
     gitsigns.setqflist 'all'
   end)
-  map('n', '<leader>ghq', gitsigns.setqflist)
+  map('n', '<leader>hq', gitsigns.setqflist)
 
   -- Toggles
-  map('n', '<leader>gtb', gitsigns.toggle_current_line_blame)
-  map('n', '<leader>gtw', gitsigns.toggle_word_diff)
+  map('n', '<leader>tb', gitsigns.toggle_current_line_blame)
+  map('n', '<leader>tw', gitsigns.toggle_word_diff)
 
   -- Text object
   map({ 'o', 'x' }, 'ih', gitsigns.select_hunk)
