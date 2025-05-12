@@ -1,6 +1,6 @@
 return {
   {
-    '<leader>hl',
+    '<leader>g',
     function()
       Snacks.lazygit()
     end,

@@ -16,18 +16,7 @@ return { -- Collection of various small independent plugins/modules
     -- - sd'   - [S]urround [D]elete [']quotes
     -- - sr)'  - [S]urround [R]eplace [)] [']
     require('mini.surround').setup {
-      mappings = {
-        add = '<leader>pa', -- Add surrounding in Normal and Visual modes
-        delete = '<leader>pd', -- Delete surrounding
-        find = '<leader>pf', -- Find surrounding (to the right)
-        find_left = '<leader>pF', -- Find surrounding (to the left)
-        highlight = '<leader>ph', -- Highlight surrounding
-        replace = '<leader>pr', -- Replace surrounding
-        update_n_lines = '<leader>pn', -- Update `n_lines`
-
-        suffix_last = 'l', -- Suffix to search with "prev" method
-        suffix_next = 'n', -- Suffix to search with "next" method
-      },
+      mappings = require('config.mappings.mini').surround,
     }
 
     require('mini.tabline').setup { show_icons = false }

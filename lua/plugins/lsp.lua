@@ -44,6 +44,8 @@ return {
       require 'config.lsp.volar'
 
       vim.lsp.enable 'eslint_d'
+
+      require 'config.mappings.lsp'
     end,
   },
 }
