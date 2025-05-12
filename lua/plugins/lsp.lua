@@ -14,7 +14,7 @@ return {
   },
   {
     'https://github.com/mason-org/mason.nvim',
-    lazy = false,
+    event = 'VeryLazy',
     dependencies = {
       'neovim/nvim-lspconfig',
       'https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim',
@@ -36,7 +36,8 @@ return {
           'stylua',
           'shfmt',
           'vue-language-server', -- includes ts_ls
-          'eslint_d'
+          'eslint_d',
+          'prettierd',
         },
       }
 
