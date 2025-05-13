@@ -28,6 +28,7 @@ return { -- Autoformat
       html = { 'prettierd' },
       vue = { 'prettierd' },
       css = { 'prettierd' },
+      json = { 'prettierd' },
     },
   },
 }
