@@ -59,6 +59,12 @@ local mappings = {
     vim.lsp.buf.code_action,
     'Code Actions',
   },
+  -- Diagnostics
+  {
+    '<leader>lD',
+    require('telescope.builtin').diagnostics,
+    'Diagnostics',
+  },
 }
 
 -- Loop through mappings to set keybindings
