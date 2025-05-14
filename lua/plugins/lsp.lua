@@ -24,7 +24,6 @@ return {
       require 'config.lsp.lua_ls'
       require 'config.lsp.volar'
 
-      vim.lsp.enable 'eslint_d'
       vim.lsp.enable 'cssls'
 
       require 'config.mappings.lsp'
