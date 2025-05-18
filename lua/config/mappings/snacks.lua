@@ -22,4 +22,11 @@ return {
     desc = 'Terminal',
     mode = { 'n', 't' },
   },
+  {
+    '<leader>sp',
+    function()
+      Snacks.picker.projects()
+    end,
+    desc = 'Projects',
+  }
 }
