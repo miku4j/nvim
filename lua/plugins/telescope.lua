@@ -5,6 +5,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     'nvim-lua/plenary.nvim',
     'https://github.com/nvim-telescope/telescope-fzy-native.nvim',
     { 'nvim-telescope/telescope-ui-select.nvim' },
+    'https://github.com/ahmedkhalf/project.nvim',
   },
   config = function()
     -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -48,6 +49,10 @@ return { -- Fuzzy Finder (files, lsp, etc)
     -- Enable Telescope extensions if they are installed
     require('telescope').load_extension 'fzy_native'
     pcall(require('telescope').load_extension, 'ui-select')
+
+    -- Project extension
+    require('project_nvim').setup {}
+    require('telescope').load_extension 'projects'
 
     require 'config.mappings.telescope'
   end,
