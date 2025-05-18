@@ -8,7 +8,7 @@ return {
       --- https://github.com/kevinhwang91/nvim-ufo
       require("ufo").setup({
         provider_selector = function()
-          return { "treesitter", "indent" }
+          return { "indent", "treesitter" }
         end,
       })
     end,
