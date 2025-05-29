@@ -25,6 +25,12 @@ return {
       require 'config.lsp.volar'
 
       vim.lsp.enable 'cssls'
+      vim.lsp.enable 'tailwindcss'
+      vim.lsp.enable 'emmet_language_server'
+
+      -- python
+      vim.lsp.enable 'ruff'
+      vim.lsp.enable 'basedpyright'
 
       require 'config.mappings.lsp'
     end,

@@ -102,3 +102,7 @@ vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 
 vim.o.jumpoptions = 'view'
+
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true

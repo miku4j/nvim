@@ -29,6 +29,7 @@ return { -- Autoformat
       vue = { 'prettierd' },
       css = { 'prettierd' },
       json = { 'prettierd' },
+      python = { 'ruff_format', 'ruff_fix', 'ruff_organize_imports' }
     },
   },
 }
