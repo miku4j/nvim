@@ -17,7 +17,7 @@ return {
   {
     '<A-i>',
     function()
-      Snacks.terminal('aider')
+      Snacks.terminal 'aider'
     end,
     desc = 'Terminal',
     mode = { 'n', 't' },
@@ -28,5 +28,19 @@ return {
       Snacks.picker.projects()
     end,
     desc = 'Projects',
-  }
+  },
+  {
+    '<leader>bd',
+    function()
+      Snacks.bufdelete()
+    end,
+    desc = 'Buffer delete',
+  },
+  {
+    '<leader>bo',
+    function()
+      Snacks.bufdelete.other()
+    end,
+    desc = 'Buffer delete other',
+  },
 }

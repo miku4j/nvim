@@ -12,8 +12,6 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('n', 'H', '<cmd>bprev<CR>')
 vim.keymap.set('n', 'L', '<cmd>bnext<CR>')
 vim.keymap.set('n', '<A-c>', '<cmd>bnext<CR>')
-vim.keymap.set('n', '<leader>bo', '<cmd>silent! execute "%bd|e#|bd#"<CR>')
-vim.keymap.set('n', '<leader>x', '<cmd>bd<CR>')
 
 -- window
 vim.keymap.set('n', 'j', 'gj', { noremap = true })

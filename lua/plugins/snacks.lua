@@ -8,6 +8,7 @@ return {
       -- refer to the configuration section below
     },
     terminal = {},
+    bigfile = {},
   },
   keys = require 'config.mappings.snacks',
 }
