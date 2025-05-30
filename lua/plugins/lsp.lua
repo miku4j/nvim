@@ -21,12 +21,14 @@ return {
     config = function()
       require('mason').setup {}
 
+      -- lua
       require 'config.lsp.lua_ls'
-      require 'config.lsp.volar'
 
+      -- web
       vim.lsp.enable 'cssls'
       vim.lsp.enable 'tailwindcss'
       vim.lsp.enable 'emmet_language_server'
+      require 'config.lsp.vue_ls'
 
       -- python
       vim.lsp.enable 'ruff'
