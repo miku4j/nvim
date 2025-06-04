@@ -1,6 +1,6 @@
 return {
   {
-    '<leader>e',
+    '<leader>p',
     function()
       require('persistence').load()
     end,

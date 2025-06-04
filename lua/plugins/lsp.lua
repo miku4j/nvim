@@ -33,8 +33,6 @@ return {
       -- python
       vim.lsp.enable 'ruff'
       vim.lsp.enable 'basedpyright'
-
-      require 'config.mappings.lsp'
     end,
   },
 }
