@@ -13,3 +13,9 @@ vim.o.smoothscroll = false
 -- temporary fix for treesitter flickering on multiple window
 -- see https://github.com/neovim/neovim/issues/32660
 vim.g._ts_force_sync_parsing = true
+
+-- line wrap
+vim.o.wrap = true
+vim.o.breakindent = true
+vim.o.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
+vim.o.linebreak = true
