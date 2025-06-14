@@ -4,8 +4,11 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      require('kanso').setup()
-      vim.cmd.colorscheme('kanso-zen')
-    end
+      require("kanso").setup({
+        transparent = true,
+        theme = "zen"
+      })
+      vim.cmd.colorscheme("kanso-zen")
+    end,
   },
 }
