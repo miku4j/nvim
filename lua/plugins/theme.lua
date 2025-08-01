@@ -1,14 +1,15 @@
 return {
   {
-    "webhooked/kanso.nvim",
+    "catppuccin/nvim",
+    name = "catppuccin",
     lazy = false,
     priority = 1000,
     config = function()
-      require("kanso").setup({
-        transparent = true,
-        theme = "zen"
+      require("catppuccin").setup({
+        transparent_background = true,
       })
-      vim.cmd.colorscheme("kanso-zen")
+
+      vim.cmd.colorscheme("catppuccin-mocha")
     end,
   },
 }
