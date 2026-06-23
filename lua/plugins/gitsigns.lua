@@ -2,8 +2,8 @@ return {
   "lewis6991/gitsigns.nvim",
   event = { "BufReadPre", "BufNewFile" },
   keys = {
-    { "<A-h>", function() require("gitsigns").prev_hunk() end, desc = "Prev Hunk", mode = "n" },
-    { "<A-l>", function() require("gitsigns").next_hunk() end, desc = "Next Hunk", mode = "n" },
+    { "<A-k>", function() require("gitsigns").prev_hunk() end, desc = "Prev Hunk", mode = "n" },
+    { "<A-j>", function() require("gitsigns").next_hunk() end, desc = "Next Hunk", mode = "n" },
     { "<leader>hs", function() require("gitsigns").stage_hunk() end, desc = "Stage Hunk", mode = { "n", "v" } },
     { "<leader>hr", function() require("gitsigns").reset_hunk() end, desc = "Reset Hunk", mode = { "n", "v" } },
     { "<leader>hp", function() require("gitsigns").preview_hunk() end, desc = "Preview Hunk" },
