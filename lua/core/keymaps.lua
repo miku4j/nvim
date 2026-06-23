@@ -68,6 +68,26 @@ map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 map("x", "<", "<gv")
 map("x", ">", ">gv")
 
+-- Jump to lines with same indent
+local function same_indent_jump(direction)
+  return function()
+    local indent = vim.fn.indent(".")
+    local cur = vim.fn.line(".")
+    local last = vim.fn.line("$")
+    local step = direction == "prev" and -1 or 1
+    local line = cur + step
+    while line >= 1 and line <= last do
+      if vim.fn.indent(line) == indent and not vim.fn.getline(line):match("^%s*$") then
+        vim.fn.cursor(line, vim.fn.indent(line) + 1)
+        return
+      end
+      line = line + step
+    end
+  end
+end
+map("n", "<A-h>", same_indent_jump("prev"), { desc = "Same Indent Previous" })
+map("n", "<A-l>", same_indent_jump("next"), { desc = "Same Indent Next" })
+
 -- Comment new lines
 map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
 map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
