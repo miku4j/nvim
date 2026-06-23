@@ -170,10 +170,10 @@ end, { desc = "Lazygit (cwd)" })
 
 -- Telescope git mappings
 map("n", "<leader>gb", function()
-  require("telescope.builtin").git_bcommits()
+  require("telescope.builtin").git_bcommits_range()
 end, { desc = "Git Blame Line" })
 map("n", "<leader>gf", function()
-  require("telescope.builtin").git_commits()
+  require("telescope.builtin").git_bcommits()
 end, { desc = "Git Current File History" })
 map("n", "<leader>gl", function()
   require("telescope.builtin").git_commits({ cwd = H.git_root() })
