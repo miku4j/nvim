@@ -178,6 +178,16 @@ end, { desc = "Git Current File History" })
 map("n", "<leader>gl", function()
   require("telescope.builtin").git_commits({ cwd = H.git_root() })
 end, { desc = "Git Log" })
+map("n", "<leader>/", function()
+  require("telescope.builtin").current_buffer_fuzzy_find()
+end, { desc = "Fuzzy Find in Buffer" })
+
+-- Copy file path with line number
+map("n", "<leader>yp", function()
+  local path = vim.fn.expand("%:p")
+  local line = vim.fn.line(".")
+  vim.fn.setreg("+", path .. ":" .. line)
+end, { desc = "Copy File:Line" })
 
 -- Git browse
 map({ "n", "x" }, "<leader>gB", H.git_browse, { desc = "Git Browse" })
