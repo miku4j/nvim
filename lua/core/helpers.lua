@@ -73,6 +73,19 @@ function M.toggle_diagnostics()
 end
 
 local lazygit_term
+
+local persistence_group = vim.api.nvim_create_augroup("persistence_helpers", { clear = true })
+vim.api.nvim_create_autocmd("User", {
+  group = persistence_group,
+  pattern = "PersistenceLoadPre",
+  callback = function()
+    if lazygit_term then
+      lazygit_term:shutdown()
+      lazygit_term = nil
+    end
+  end,
+})
+
 function M.lazygit_toggle(cwd)
   if not lazygit_term then
     local Terminal = require("toggleterm.terminal").Terminal

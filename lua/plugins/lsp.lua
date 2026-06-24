@@ -9,9 +9,9 @@ return {
     "williamboman/mason-lspconfig.nvim",
     dependencies = { "williamboman/mason.nvim" },
     opts = {
-      ensure_installed = { "lua_ls", "ts_ls", "gopls", "eslint-lsp" },
+      ensure_installed = { "lua_ls", "ts_ls", "gopls", "eslint" },
       handlers = {
-        ["eslint-lsp"] = function()
+        ["eslint"] = function()
           local capabilities = vim.lsp.protocol.make_client_capabilities()
           capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
           capabilities.documentFormattingProvider = false
