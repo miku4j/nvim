@@ -23,7 +23,7 @@ end
 
 function M.format(opts)
   opts = opts or {}
-  vim.lsp.buf.format(vim.tbl_extend("force", { async = false }, opts))
+  require("conform").format(vim.tbl_extend("force", { async = false, lsp_fallback = true }, opts))
 end
 
 function M.bufdelete()

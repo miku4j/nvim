@@ -9,8 +9,20 @@ return {
     "williamboman/mason-lspconfig.nvim",
     dependencies = { "williamboman/mason.nvim" },
     opts = {
-      ensure_installed = { "lua_ls", "ts_ls", "gopls" },
+      ensure_installed = { "lua_ls", "ts_ls", "gopls", "eslint-lsp" },
       handlers = {
+        ["eslint-lsp"] = function()
+          local capabilities = vim.lsp.protocol.make_client_capabilities()
+          capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+          capabilities.documentFormattingProvider = false
+          require("lspconfig").eslint.setup({
+            capabilities = capabilities,
+            filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte", "astro" },
+            settings = {
+              format = false,
+            },
+          })
+        end,
         function(server_name)
           local capabilities = vim.lsp.protocol.make_client_capabilities()
           capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
