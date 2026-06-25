@@ -41,12 +41,17 @@ map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 
 -- Clear search on escape
 map({ "i", "n", "s" }, "<esc>", function()
-  vim.cmd("noh")
-  return "<esc>"
+	vim.cmd("noh")
+	return "<esc>"
 end, { expr = true, desc = "Escape and Clear hlsearch" })
 
 -- Redraw / clear hlsearch
-map("n", "<leader>ur", "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>", { desc = "Redraw / Clear hlsearch / Diff Update" })
+map(
+	"n",
+	"<leader>ur",
+	"<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
+	{ desc = "Redraw / Clear hlsearch / Diff Update" }
+)
 
 -- Saner n/N
 map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
@@ -70,23 +75,23 @@ map("x", ">", ">gv")
 
 -- Jump to lines with same indent
 local function same_indent_jump(direction)
-  return function()
-    local indent = vim.fn.indent(".")
-    local cur = vim.fn.line(".")
-    local last = vim.fn.line("$")
-    local step = direction == "prev" and -1 or 1
-    local line = cur + step
-    while line >= 1 and line <= last do
-      if vim.fn.indent(line) == indent and not vim.fn.getline(line):match("^%s*$") then
-        vim.fn.cursor(line, vim.fn.indent(line) + 1)
-        return
-      end
-      line = line + step
-    end
-  end
+	return function()
+		local indent = vim.fn.indent(".")
+		local cur = vim.fn.line(".")
+		local last = vim.fn.line("$")
+		local step = direction == "prev" and -1 or 1
+		local line = cur + step
+		while line >= 1 and line <= last do
+			if vim.fn.indent(line) == indent and not vim.fn.getline(line):match("^%s*$") then
+				return line .. "G"
+			end
+			line = line + step
+		end
+		return ""
+	end
 end
-map("n", "<A-h>", same_indent_jump("prev"), { desc = "Same Indent Previous" })
-map("n", "<A-l>", same_indent_jump("next"), { desc = "Same Indent Next" })
+map({ "n", "x", "o" }, "<A-h>", same_indent_jump("prev"), { desc = "Same Indent Previous", expr = true })
+map({ "n", "x", "o" }, "<A-l>", same_indent_jump("next"), { desc = "Same Indent Next", expr = true })
 
 -- Comment new lines
 map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
@@ -100,36 +105,36 @@ map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
 -- Location list
 map("n", "<leader>xl", function()
-  local ok, err = pcall(vim.cmd, vim.fn.getloclist(0, { winid = 0 }).winid ~= 0 and "lclose" or "lopen")
-  if not ok and err then
-    vim.notify(err, vim.log.levels.ERROR)
-  end
+	local ok, err = pcall(vim.cmd, vim.fn.getloclist(0, { winid = 0 }).winid ~= 0 and "lclose" or "lopen")
+	if not ok and err then
+		vim.notify(err, vim.log.levels.ERROR)
+	end
 end, { desc = "Location List" })
 
 -- Quickfix list
 map("n", "<leader>xq", function()
-  local ok, err = pcall(vim.cmd, vim.fn.getqflist({ winid = 0 }).winid ~= 0 and "cclose" or "copen")
-  if not ok and err then
-    vim.notify(err, vim.log.levels.ERROR)
-  end
+	local ok, err = pcall(vim.cmd, vim.fn.getqflist({ winid = 0 }).winid ~= 0 and "cclose" or "copen")
+	if not ok and err then
+		vim.notify(err, vim.log.levels.ERROR)
+	end
 end, { desc = "Quickfix List" })
 map("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
 map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 
 -- Format
 map({ "n", "x" }, "<leader>cf", function()
-  H.format({ force = true })
+	H.format({ force = true })
 end, { desc = "Format" })
 
 -- Diagnostic navigation
 local function diagnostic_goto(next, severity)
-  return function()
-    vim.diagnostic.jump({
-      count = (next and 1 or -1) * vim.v.count1,
-      severity = severity and vim.diagnostic.severity[severity] or nil,
-      float = true,
-    })
-  end
+	return function()
+		vim.diagnostic.jump({
+			count = (next and 1 or -1) * vim.v.count1,
+			severity = severity and vim.diagnostic.severity[severity] or nil,
+			float = true,
+		})
+	end
 end
 map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
@@ -141,52 +146,52 @@ map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 
 -- Toggles
 map("n", "<leader>us", function()
-  vim.opt.spell = not vim.opt.spell:get()
+	vim.opt.spell = not vim.opt.spell:get()
 end, { desc = "Toggle Spelling" })
 map("n", "<leader>uw", function()
-  vim.opt.wrap = not vim.opt.wrap:get()
+	vim.opt.wrap = not vim.opt.wrap:get()
 end, { desc = "Toggle Wrap" })
 map("n", "<leader>uL", function()
-  vim.opt.relativenumber = not vim.opt.relativenumber:get()
+	vim.opt.relativenumber = not vim.opt.relativenumber:get()
 end, { desc = "Toggle Relative Number" })
 map("n", "<leader>ul", function()
-  if vim.o.number then
-    vim.opt.number = false
-    vim.opt.relativenumber = false
-  else
-    vim.opt.number = true
-  end
+	if vim.o.number then
+		vim.opt.number = false
+		vim.opt.relativenumber = false
+	else
+		vim.opt.number = true
+	end
 end, { desc = "Toggle Line Numbers" })
 map("n", "<leader>ud", H.toggle_diagnostics, { desc = "Toggle Diagnostics" })
 map("n", "<leader>uZ", H.zoom, { desc = "Toggle Zoom" })
 
 -- Lazygit
 map("n", "<leader>gg", function()
-  H.lazygit_toggle(H.git_root())
+	H.lazygit_toggle(H.git_root())
 end, { desc = "Lazygit (Root Dir)" })
 map("n", "<leader>gG", function()
-  H.lazygit_toggle()
+	H.lazygit_toggle()
 end, { desc = "Lazygit (cwd)" })
 
 -- Telescope git mappings
 map("n", "<leader>gb", function()
-  require("telescope.builtin").git_bcommits_range()
+	require("telescope.builtin").git_bcommits_range()
 end, { desc = "Git Blame Line" })
 map("n", "<leader>gf", function()
-  require("telescope.builtin").git_bcommits()
+	require("telescope.builtin").git_bcommits()
 end, { desc = "Git Current File History" })
 map("n", "<leader>gl", function()
-  require("telescope.builtin").git_commits({ cwd = H.git_root() })
+	require("telescope.builtin").git_commits({ cwd = H.git_root() })
 end, { desc = "Git Log" })
 map("n", "<leader>/", function()
-  require("telescope.builtin").current_buffer_fuzzy_find()
+	require("telescope.builtin").current_buffer_fuzzy_find()
 end, { desc = "Fuzzy Find in Buffer" })
 
 -- Copy file path with line number
 map("n", "<leader>yp", function()
-  local path = vim.fn.expand("%:p")
-  local line = vim.fn.line(".")
-  vim.fn.setreg("+", path .. ":" .. line)
+	local path = vim.fn.expand("%:p")
+	local line = vim.fn.line(".")
+	vim.fn.setreg("+", path .. ":" .. line)
 end, { desc = "Copy File:Line" })
 
 -- Git browse
@@ -200,7 +205,7 @@ map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 
 -- Terminal
 map("n", "<leader>ft", function()
-  require("toggleterm").toggle()
+	require("toggleterm").toggle()
 end, { desc = "Terminal (Root Dir)" })
 
 -- Windows
