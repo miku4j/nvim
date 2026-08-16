@@ -1,13 +1,14 @@
 return {
-  "WhoIsSethDaniel/mason-tool-installer.nvim",
-  dependencies = { "williamboman/mason.nvim" },
-  opts = {
-    ensure_installed = {
-      "stylua",
-      "prettier",
-      "goimports",
-      "gofumpt",
-      "shfmt",
-    },
-  },
+	"WhoIsSethDaniel/mason-tool-installer.nvim",
+	dependencies = { "williamboman/mason.nvim" },
+	opts = {
+		ensure_installed = {
+			"stylua",
+			"prettier",
+			"goimports",
+			"gofumpt",
+			"shfmt",
+			"tailwindcss-language-server",
+		},
+	},
 }
