@@ -36,9 +36,10 @@ which auto-bootstraps from `lua/config/lazy.lua`.
 ## LSP
 
 - mason.nvim + mason-lspconfig.nvim + nvim-lspconfig.
-- Installed servers: `lua_ls`, `ts_ls`, `gopls`, `eslint`.
-- Formatter/formatter tools ensured by `mason-tool-installer.nvim`:
-  `stylua`, `prettier`, `goimports`, `gofumpt`, `shfmt`.
+- Opt-in: nothing auto-installs at startup (`ensure_installed = {}`).
+- Install manually via `:Mason` or `:MasonInstall <server|tool>`
+  (e.g. `:MasonInstall lua_ls ts_ls gopls eslint tailwindcss-language-server`
+  and `stylua`, `prettier`, `goimports`, `gofumpt`, `shfmt`).
 
 ## Helpers
 

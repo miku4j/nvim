@@ -1,7 +1,6 @@
 return {
 	{
 		"williamboman/mason.nvim",
-		build = ":MasonUpdate",
 		cmd = "Mason",
 		opts = {},
 	},
@@ -9,39 +8,62 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		dependencies = { "williamboman/mason.nvim" },
 		opts = {
-			ensure_installed = { "lua_ls", "ts_ls", "gopls", "eslint", "tailwindcss" },
+			-- Opt-in: nothing auto-installs at startup. Install manually via
+			-- `:Mason` or `:MasonInstall <server>` (e.g. `:MasonInstall gopls`).
+			ensure_installed = {},
+			automatic_installation = false,
 			handlers = {
 				["eslint"] = function()
 					local capabilities = vim.lsp.protocol.make_client_capabilities()
-					capabilities =
-						vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+					local ok_cmp, cmp = pcall(require, "cmp_nvim_lsp")
+					if ok_cmp and cmp then
+						capabilities = vim.tbl_deep_extend("force", capabilities, cmp.default_capabilities())
+					end
 					capabilities.documentFormattingProvider = false
-					require("lspconfig").eslint.setup({
-						capabilities = capabilities,
-						filetypes = {
-							"javascript",
-							"javascriptreact",
-							"typescript",
-							"typescriptreact",
-							"vue",
-							"svelte",
-							"astro",
-						},
-						settings = {
-							format = false,
-						},
-					})
+					local ok_lsp, lspconfig = pcall(require, "lspconfig")
+					if ok_lsp and lspconfig.eslint then
+						pcall(lspconfig.eslint.setup, {
+							capabilities = capabilities,
+							filetypes = {
+								"javascript",
+								"javascriptreact",
+								"typescript",
+								"typescriptreact",
+								"vue",
+								"svelte",
+								"astro",
+							},
+							settings = {
+								format = false,
+							},
+						})
+					end
 				end,
 				function(server_name)
 					local capabilities = vim.lsp.protocol.make_client_capabilities()
-					capabilities =
-						vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-					require("lspconfig")[server_name].setup({
-						capabilities = capabilities,
-					})
+					local ok_cmp, cmp = pcall(require, "cmp_nvim_lsp")
+					if ok_cmp and cmp then
+						capabilities = vim.tbl_deep_extend("force", capabilities, cmp.default_capabilities())
+					end
+					local ok_lsp, lspconfig = pcall(require, "lspconfig")
+					if ok_lsp and lspconfig[server_name] then
+						pcall(lspconfig[server_name].setup, {
+							capabilities = capabilities,
+						})
+					end
 				end,
 			},
 		},
+		config = function(_, opts)
+			local ok, err = pcall(function()
+				require("mason-lspconfig").setup(opts)
+			end)
+			if not ok then
+				vim.schedule(function()
+					vim.notify("mason-lspconfig: " .. tostring(err), vim.log.levels.WARN)
+				end)
+			end
+		end,
 	},
 	{
 		"neovim/nvim-lspconfig",
