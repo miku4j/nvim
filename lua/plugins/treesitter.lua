@@ -1,5 +1,6 @@
 return {
 	"romus204/tree-sitter-manager.nvim",
+	event = { "BufReadPre", "BufNewFile" },
 	opts = {
 		ensure_installed = {
 			"lua",

@@ -6,6 +6,7 @@ return {
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = { "williamboman/mason.nvim" },
 		opts = {
 			-- Opt-in: nothing auto-installs at startup. Install manually via
