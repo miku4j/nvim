@@ -173,6 +173,13 @@ map("n", "<leader>gG", function()
 	H.lazygit_toggle()
 end, { desc = "Lazygit (cwd)" })
 
+-- pi
+map({ "n", "t" }, "<M-p>", function()
+	H.pi_toggle()
+end, { desc = "Toggle pi" })
+map("n", "<leader>pf", H.pi_file, { desc = "pi: Send File" })
+map("x", "<leader>ps", H.pi_selection, { desc = "pi: Send Selection" })
+
 -- Telescope git mappings
 map("n", "<leader>gb", function()
 	require("telescope.builtin").git_bcommits_range()

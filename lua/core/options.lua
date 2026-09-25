@@ -3,6 +3,7 @@ vim.g.maplocalleader = "\\"
 
 local opt = vim.opt
 
+opt.autoread = true
 opt.autowrite = true
 opt.clipboard = vim.env.SSH_CONNECTION and "" or "unnamedplus"
 opt.completeopt = "menu,menuone,noselect"

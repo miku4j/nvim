@@ -75,30 +75,73 @@ function M.toggle_diagnostics()
 	vim.diagnostic.enable(vim.g.diagnostics_enabled)
 end
 
-local lazygit_term
+local terms = {}
+
+local function term(name, cmd, direction)
+	if not terms[name] then
+		local Terminal = require("toggleterm.terminal").Terminal
+		terms[name] = Terminal:new({
+			cmd = cmd,
+			direction = direction,
+			float_opts = { border = "curved" },
+		})
+	end
+	return terms[name]
+end
 
 local persistence_group = vim.api.nvim_create_augroup("persistence_helpers", { clear = true })
 vim.api.nvim_create_autocmd("User", {
 	group = persistence_group,
 	pattern = "PersistenceLoadPre",
 	callback = function()
-		if lazygit_term then
-			lazygit_term:shutdown()
-			lazygit_term = nil
+		for name, t in pairs(terms) do
+			t:shutdown()
+			terms[name] = nil
 		end
 	end,
 })
 
 function M.lazygit_toggle(cwd)
-	if not lazygit_term then
-		local Terminal = require("toggleterm.terminal").Terminal
-		lazygit_term = Terminal:new({
-			cmd = "lazygit",
-			direction = "float",
-			float_opts = { border = "curved" },
-		})
+	term("lazygit", "lazygit", "float"):toggle(cwd)
+end
+
+function M.pi_toggle(cwd)
+	term("pi", "pi", "tab"):toggle(cwd or M.git_root())
+end
+
+-- Send raw keystrokes into pi's running prompt without submitting it.
+function M.pi_send(text)
+	local t = term("pi", "pi", "tab")
+	if not t:is_open() then
+		t:open()
 	end
-	lazygit_term:toggle(cwd)
+	if not t.job_id then
+		return
+	end
+	t:focus()
+	vim.fn.chansend(t.job_id, text)
+end
+
+function M.pi_file()
+	local path = vim.api.nvim_buf_get_name(0)
+	if path == "" then
+		return
+	end
+	M.pi_send("@" .. path .. " ")
+end
+
+function M.pi_selection()
+	local start = vim.fn.getpos("v")
+	local finish = vim.fn.getpos(".")
+	local srow = math.min(start[2], finish[2])
+	local erow = math.max(start[2], finish[2])
+	if srow == 0 then
+		return
+	end
+	local lines = vim.api.nvim_buf_get_lines(0, srow - 1, erow, false)
+	local tmp = vim.fn.tempname() .. ".md"
+	vim.fn.writefile(lines, tmp)
+	M.pi_send("@" .. tmp .. " ")
 end
 
 function M.git_browse()
